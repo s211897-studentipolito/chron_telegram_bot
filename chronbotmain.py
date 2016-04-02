@@ -1,5 +1,5 @@
 import telebot, subprocess
-bot = telebot.TeleBot ('214286801:AAGL7tBjGjdfW2hHCc_yo_2w4KvblXPgZow')
+bot = telebot.TeleBot (TOKEN)
 
 @bot.message_handler (commands=['start', 'help'])
 def send_welcome (message):
