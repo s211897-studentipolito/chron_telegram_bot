@@ -2,7 +2,7 @@ import datetime as dt
 import telebot
 import time
 
-bot = telebot.TeleBot ('214286801:AAGL7tBjGjdfW2hHCc_yo_2w4KvblXPgZow')
+bot = telebot.TeleBot (TOKEN)
 
 def iscurrent (line):
     l = line.split (' ')
