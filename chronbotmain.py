@@ -14,13 +14,10 @@ run every hour, at 20 min after the beginning of the hour -> "* * * 20"\n\n\
 run every minute -> "* * * *"\n\ninsert the text after a COMMA\n\nsend /remove ID to delete a scheduled action\n')
 
 def check_validity (time):
-    print (time)
     time = time.split (' ')
     for i in range (4):
-        print (time[i])
         if time[i] != '*' and not time[i].isdigit ():
             return False
-    print ('returning true')
     return True
 
 @bot.message_handler (commands=['remove'])
@@ -36,9 +33,7 @@ def remove (message):
                 chatId = chatId.split (' REMOVE:')
                 chatId = chatId[0]
 
-                print (chatId)
                 if removalId != currentId or int (chatId) != message.chat.id:
-                    print ('writing')
                     tmp.write (line)
                 line = fp.readline ()
     subprocess.call (['mv', 'tmp.db', 'chron.db'])
@@ -49,7 +44,6 @@ def schedule (message):
         text = message.text
         text = text.split (',', 1)
         time = text.pop (0)
-        print (time, text)
         if not check_validity (time):
             raise ValueError
 
@@ -57,7 +51,6 @@ def schedule (message):
             time = time[:-1] 
         with open ('lastid', 'r') as fp:
             lastId = fp.readline ()
-            print (lastId)
         lastId = int (lastId) + 1
         with open ('lastid', 'w') as fp:
             fp.write (str (lastId))
@@ -75,6 +68,6 @@ def schedule (message):
 if __name__ == '__main__':
     while True:
         try:
-            bot.polling
+            bot.polling ()
         except:
             pass
